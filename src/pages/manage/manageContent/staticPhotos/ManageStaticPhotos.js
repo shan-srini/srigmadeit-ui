@@ -1,12 +1,43 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
+import cloudStorageAPI from '../../../../services/ibmCOS.service.js'
+import CloudStorageContext from '../../CloudStorageContext.js'
 
+// photosPageStaticImage1
+// Static images ids (keys) never change
 const ManageStaticPhotos = (props) => {
+    const cloudStorageConfig = React.useContext(CloudStorageContext);
+    const imgRef = React.useRef(null);
+    const [indexImage, setIndexImage] = React.useState(0);
+
     return (
-        <Container>
-            ManageStaticPhotos
+        <Container style={{ paddingTop: '10vh' }}>
+            <div>
+                0 is top left, 1 is bottom left, 2 is middle left, 3 is middle right, 4 is top right, 5 is bottom right
+                <br />
+                Select a number, upload a photo and submit it. You can see it right away on the photos page.
+                <br />
+            </div>
+            <form onSubmit={(e) => setStaticImage(e, cloudStorageConfig, indexImage, imgRef)}>
+                <input onChange={(e) => setIndexImage(e.target.value)} type="number" min="0" max="5" value="0" />
+                <input ref={imgRef} required type="file" />
+                <input type="submit" />
+            </form>
         </Container>
     )
+}
+
+async function setStaticImage(e, cloudStorageConfig, index, pictureRef) {
+    e.preventDefault();
+    const picture = pictureRef.current.files[0];
+    const idToSet = "photosPageStaticImage" + index
+    try {
+        await cloudStorageAPI.uploadCOS(cloudStorageConfig, [idToSet], [picture]);
+        window.alert("uploaded")
+    }
+    catch (err) {
+        window.alert("unable to upload image:..." + err);
+    }
 }
 
 export default ManageStaticPhotos;
