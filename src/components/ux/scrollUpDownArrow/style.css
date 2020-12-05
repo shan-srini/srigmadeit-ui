@@ -1,0 +1,32 @@
+.arrow {
+    cursor: pointer;
+    width: 100px;
+  }
+  
+  .line {
+    display: inline-block;
+    background-color: red;
+    height: 65px;
+    width: 3px;
+    border-color: red;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 50px;
+    transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
+  }
+  .left {
+    transform: rotate(50deg);
+  }
+  .left-open {
+    transform-origin: center center;
+    transform: rotate(130deg);
+  }
+  .right {
+    margin-left: 40px;
+    transform: rotate(-50deg);
+  }
+  .right-open {
+    margin-left: 40px;
+    transform-origin: center center;
+    transform: rotate(-130deg);
+  }
