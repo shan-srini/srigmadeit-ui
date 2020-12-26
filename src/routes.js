@@ -14,6 +14,7 @@ const routes = {
             eventMeta: (eventId) => srigmadeitBaseURL + `/events/${eventId}`,
             categories: (eventId) => srigmadeitBaseURL + `/events/${eventId}/categories`,
             media: (eventId, categoryId) => srigmadeitBaseURL + `/events/${eventId}/categories/${categoryId}/media`,
+            getMedia: (categoryId) => srigmadeitBaseURL + `/media?categoryId=${categoryId}`,
             login: srigmadeitBaseURL + '/login'
         }
     },

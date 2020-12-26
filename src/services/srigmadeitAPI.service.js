@@ -106,13 +106,13 @@ function createMedia(eventId, categoryId, source = dataSources.COS, count = 1) {
 }
 
 // get all media for a category
-function getMedia(categoryName, page = 0, size = 25) {
-    const endpoint = new URL(api.media(eventName, categoryName));
+function getMedia(categoryId, page = 0, size = 25) {
+    const endpoint = new URL(api.getMedia(categoryId));
     endpoint.searchParams.append('page', page);
     endpoint.searchParams.append('size', size);
     return requests.get(endpoint)
         .then((response) => {
-            return response.data.media;
+            return response.data;
         })
         .catch((error) => console.log(error))
 }
@@ -120,7 +120,7 @@ function getMedia(categoryName, page = 0, size = 25) {
 // helper for getting urls from meta info of media/event
 export function mediaMetaToURL(mediaMeta) {
     if (mediaMeta.type && mediaMeta._id) {
-        if (mediaMeta.type === "image/jpeg") {
+        if (mediaMeta.source === dataSources.COS) {
             return routes.dataSources.cos + mediaMeta._id;
         }
         else if (mediaMeta.type === "video/youtube") {

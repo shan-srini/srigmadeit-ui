@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react'
 // 1x1 png transparent purple
 const placeHolder =
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkSPxfDwADqgHh5Lh3ywAAAABJRU5ErkJggg=='
-const LazyImage = ({ src, className }) => {
+const LazyImage = ({ src, className, onClick }) => {
     const [renderSrc, setImageSrc] = useState(placeHolder)
     const [imageRef, setImageRef] = useState()
     useEffect(() => {
@@ -48,7 +48,7 @@ const LazyImage = ({ src, className }) => {
     })
 
     return (
-        <img ref={setImageRef} className={className} src={renderSrc} />
+        <img ref={setImageRef} className={className} src={renderSrc} onClick={onClick} />
     )
 }
 

@@ -4,6 +4,7 @@ import SmiLogo from '../../assets/SmiLogo.png'
 import style from './NavBar.style.js'
 import { Link, useHistory } from 'react-router-dom'
 import routes from '../../routes.js'
+import CloseButton from '../../components/ux/closeButton/CloseButton'
 
 const NavBarOptions = ({ classes, history, hideOnSmall }) => {
     const textVariant = hideOnSmall ? "h5" : "h2";
@@ -36,7 +37,8 @@ const NavBarOptions = ({ classes, history, hideOnSmall }) => {
 const NavBar = (props) => {
     const classes = style();
     const history = useHistory();
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
+
     return (
         <AppBar position="fixed">
             <Toolbar className={classes.navBar}>
@@ -44,10 +46,9 @@ const NavBar = (props) => {
                 <Tooltip title="Home">
                     <img src={SmiLogo} onClick={() => history.push("/")} className={`${classes.navBarItem} ${classes.smiLogo}`} />
                 </Tooltip>
+
                 <div onClick={() => setOpen(!open)} className={`${classes.navBarItem} ${classes.menuButton}`}>
-                    <div className={`${classes.hamburgerBar} ${open ? classes.bar1Transition : ''}`} />
-                    <div className={`${classes.hamburgerBar} ${open ? classes.bar2Transition : ''}`} />
-                    <div className={`${classes.hamburgerBar} ${open ? classes.bar3Transition : ''}`} />
+                    <CloseButton open={open} onClick={() => setOpen(!open)} />
                 </div>
                 <Backdrop open={open} onClick={() => { setOpen(!open) }}>
                     <Container className={classes.collapsedPageNavBarOptions}>

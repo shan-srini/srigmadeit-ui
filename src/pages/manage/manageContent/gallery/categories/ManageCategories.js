@@ -33,7 +33,10 @@ const EditCategory = ({ eventId, cosConfig }) => {
     const [selectedCategoryId, setSelectedCategoryId] = React.useState();
     const photosInputRef = React.useRef(null);
     useEffect(() => {
-        srigmadeitAPI.getCategories(eventId).then(ret => setCategories(ret));
+        srigmadeitAPI.getCategories(eventId).then(ret => {
+            setCategories(ret);
+            if (ret.length > 0) setSelectedCategoryId(ret[0]._id);
+        });
     }, [eventId]);
     return (
         <Container>

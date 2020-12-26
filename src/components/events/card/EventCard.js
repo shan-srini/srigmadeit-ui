@@ -17,7 +17,7 @@ const EventCard = ({ eventMeta }) => {
     }
     return (
         <Container className={classes.eventCardContainer} elevation={20}>
-            <Link to={routes.events + '/' + _id} style={{ textDecoration: 'none' }}>
+            <Link to={{ pathname: routes.events + '/' + _id, eventName: name, timestamp: timestamp }} style={{ textDecoration: 'none' }}>
                 <Paper className={classes.eventCardPictureContainer}>
                     <LazyImage className={classes.eventCardPicture} src={eventBackgroundSrc} />
                 </Paper>
