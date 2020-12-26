@@ -14,6 +14,10 @@ const srigmadeitAPI = {
 }
 export default srigmadeitAPI;
 
+export const dataSources = {
+    COS: 'b2', // for now the only cloud object storage provider used. Backblaze B2
+}
+
 /**
  * Creates an event and returns the saved id to upload profile photo for event
  * @param {String} eventName 
@@ -23,8 +27,8 @@ function createEvent(eventName, timestamp) {
     const endpoint = api.events;
     return requests.post(endpoint, {
         event: eventName,
-        timestamp: parseInt(timestamp)
-    })
+        timestamp: new Date(timestamp).valueOf() / 1000 // converts date string to epoch timestamp by seconds for API
+    }, { withCredentials: true })
         .then((response) => {
             return response.data.event_id;
         })
@@ -43,27 +47,61 @@ function getEvents(page = 0, size = 25) {
         .catch((error) => { console.log(error); return []; })
 }
 
-// create category for an event
-function createCategory(eventName, categoryName, priority) {
-    const endpoint = api.categories(eventName);
-    return requests.post({
-        category: categoryName,
-        priority: priority
-    })
+// get event info (eventMeta & categories)
+function getEvent(eventId) {
+    const endpoint = new URL(api.events + eventId)
+    return requests.get(endpoint)
         .then((response) => {
-
+            return response.data;
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            if (error.response.status === 404) {
+                window.location.href = routes.notFound
+            }
+        })
+}
+
+// create category for an event
+function createCategory(eventId, categoryName, order) {
+    const endpoint = api.categories(eventId);
+    return requests.post(endpoint, {
+        name: categoryName,
+        order: Number(order)
+    }, { withCredentials: true })
+        .then((response) => {
+            return response.data;
+        })
+        .catch((error) => { throw error });
 }
 
 // get all categories for an event
-function getCategories(eventName) {
-    const endpoint = api.categories(eventName);
+function getCategories(eventId) {
+    const endpoint = api.categories(eventId);
     return requests.get(endpoint)
         .then((response) => {
             return response.data.categories
         })
         .catch((error) => { console.log(error); return []; })
+}
+
+/**
+ * Uploads media to srigmadeitAPI, returns array of created ids housed
+ * within the given event and category names.
+ * @param {String} eventId
+ * @param {String} categoryId
+ * @param {String} 
+ * @param {int} count 
+ */
+function createMedia(eventId, categoryId, source = dataSources.COS, count = 1) {
+    const endpoint = api.media(eventId, categoryId);
+    return requests.post(endpoint, {
+        source: source,
+        count: count
+    }, { withCredentials: true })
+        .then((response) => {
+            return response.data.media_ids;
+        })
+        .catch((error) => { console.log(error); return false; })
 }
 
 // get all media for a category
@@ -104,30 +142,13 @@ function login(username, password) {
     return requests.post(endpoint, {
         username: username,
         password: password
-    })
+    }, { withCredentials: true })
         .then((response) => {
             return response.data;
         })
         .catch((error) => { console.log(error); return false; })
 }
 
-// upload media, can upload many, returns array of uploaded ids
-/**
- * Uploads media to srigmadeitAPI, returns array of created ids housed
- * within the given event and category names.
- * @param {String} eventName 
- * @param {String} categoryName 
- * @param {int} count 
- */
-function createMedia(eventName, categoryName, count = 1) {
-    const endpoint = api.media(eventName, categoryName);
-    return requests.post(endpoint, {
-        count: count
-    })
-        .then((response) => {
-            return response.data.media_ids;
-        })
-        .catch((error) => { console.log(error); return false; })
-}
+
 
 // delete photo

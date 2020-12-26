@@ -3,6 +3,8 @@ import { Paper, Typography, Container } from '@material-ui/core';
 import style from './EventCard.style.js'
 import { mediaMetaToURL } from '../../../services/srigmadeitAPI.service.js';
 import LazyImage from '../../ux/LazyImage/LazyImage.js';
+import { Link } from 'react-router-dom';
+import routes from '../../../routes.js';
 
 const EventCard = ({ eventMeta }) => {
     const classes = style();
@@ -10,16 +12,18 @@ const EventCard = ({ eventMeta }) => {
     const { name } = eventMeta;
     let { timestamp } = eventMeta;
     if (eventMeta.timestamp) {
-        let dateOb = new Date(eventMeta.timestamp);
+        let dateOb = new Date(eventMeta.timestamp * 1000); // python datetime uses seconds, javascript uses milliseconds...
         timestamp = `${dateOb.getUTCMonth() + 1}/${dateOb.getUTCDate()}/${dateOb.getUTCFullYear()}`
     }
     return (
         <Container className={classes.eventCardContainer} elevation={20}>
-            <Paper className={classes.eventCardPictureContainer}>
-                <LazyImage className={classes.eventCardPicture} src={eventBackgroundSrc} />
-            </Paper>
-            <Typography variant="h6" style={{ color: 'black' }}> {name} </Typography>
-            <Typography variant="subtitle" style={{ padding: "5px", borderRadius: "15px", backgroundColor: 'black' }}> {timestamp} </Typography>
+            <Link to={routes.events + '/' + name} style={{ textDecoration: 'none' }}>
+                <Paper className={classes.eventCardPictureContainer}>
+                    <LazyImage className={classes.eventCardPicture} src={eventBackgroundSrc} />
+                </Paper>
+                <Typography variant="h6" className={classes.eventTitle}> {name} </Typography>
+                <Typography variant="subtitle2" className={classes.eventTimestamp}> {timestamp} </Typography>
+            </Link>
         </Container>
     )
 };

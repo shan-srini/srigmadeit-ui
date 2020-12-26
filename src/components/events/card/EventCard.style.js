@@ -20,6 +20,15 @@ const style = makeStyles((theme) => ({
         objectFit: "cover",
         objectPosition: "center",
         display: "block"
+    },
+    eventTitle: {
+        color: 'black'
+    },
+    eventTimestamp: {
+        backgroundColor: 'black',
+        color: 'white',
+        padding: "5px",
+        borderRadius: "15px",
     }
 }));
 

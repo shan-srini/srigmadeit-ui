@@ -1,7 +1,8 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
-import cloudStorageAPI from '../../../../services/ibmCOS.service.js'
+import cloudStorageAPI from '../../../../services/objectStorage.service.js'
 import CloudStorageContext from '../../CloudStorageContext.js'
+import photosStaticPageStyle from "../../../photos/Photos.style.js"
 
 // photosPageStaticImage1
 // Static images ids (keys) never change
@@ -9,7 +10,6 @@ const ManageStaticPhotos = (props) => {
     const cloudStorageConfig = React.useContext(CloudStorageContext);
     const imgRef = React.useRef(null);
     const [indexImage, setIndexImage] = React.useState(0);
-
     return (
         <Container style={{ paddingTop: '10vh' }}>
             <div>
@@ -19,10 +19,11 @@ const ManageStaticPhotos = (props) => {
                 <br />
             </div>
             <form onSubmit={(e) => setStaticImage(e, cloudStorageConfig, indexImage, imgRef)}>
-                <input onChange={(e) => setIndexImage(e.target.value)} type="number" min="0" max="5" value="0" />
+                <input onChange={(e) => setIndexImage(e.target.value)} type="number" min="0" max="5" value={indexImage} />
                 <input ref={imgRef} required type="file" />
                 <input type="submit" />
             </form>
+            {/* <RenderPreview index={indexImage} imgRef={imgRef} /> */}
         </Container>
     )
 }
@@ -38,6 +39,21 @@ async function setStaticImage(e, cloudStorageConfig, index, pictureRef) {
     catch (err) {
         window.alert("unable to upload image:..." + err);
     }
+}
+
+const RenderPreview = ({ indexSelected, imgRef }) => {
+    const classes = photosStaticPageStyle();
+    const reader = new FileReader();
+    if (!imgRef || !imgRef.current || !imgRef.current.files[0]) return (<div></div>);
+    reader.readAsDataURL(imgRef.current.files[0]);
+    return reader.onload((e) => {
+        console.log(e)
+        return (
+            <div>
+                <img src={e.target.result} />
+            </div>
+        )
+    })
 }
 
 export default ManageStaticPhotos;

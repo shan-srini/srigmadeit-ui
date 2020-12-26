@@ -2,23 +2,32 @@ import React from 'react'
 import { AppBar, Toolbar, Typography, Backdrop, Container, Tooltip } from '@material-ui/core'
 import SmiLogo from '../../assets/SmiLogo.png'
 import style from './NavBar.style.js'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import routes from '../../routes.js'
 
 const NavBarOptions = ({ classes, history, hideOnSmall }) => {
     const textVariant = hideOnSmall ? "h5" : "h2";
     return (
         <React.Fragment>
             <Tooltip title="View events">
-                <Typography onClick={() => history.push("/events")} className={`${classes.navBarItem} ${hideOnSmall && classes.events}`} variant={textVariant}>events</Typography>
+                <Link to={routes.events} className={`${classes.navBarItem} ${hideOnSmall && classes.events}`}>
+                    <Typography variant={textVariant}>events</Typography>
+                </Link>
             </Tooltip>
             <Tooltip title="Check out my favorite photos">
-                <Typography onClick={() => history.push("/photos")} className={`${classes.navBarItem} ${hideOnSmall && classes.photos}`} variant={textVariant}>photos</Typography>
+                <Link to={routes.photos} className={`${classes.navBarItem} ${hideOnSmall && classes.photos}`}>
+                    <Typography variant={textVariant}>photos</Typography>
+                </Link>
             </Tooltip>
             <Tooltip title="My video work">
-                <Typography onClick={() => history.push("/videos")} className={`${classes.navBarItem} ${hideOnSmall && classes.videos}`} variant={textVariant}>videos</Typography>
+                <Link to={routes.videos} className={`${classes.navBarItem} ${hideOnSmall && classes.videos}`}>
+                    <Typography variant={textVariant}>videos</Typography>
+                </Link>
             </Tooltip>
             <Tooltip title="Contact Me!">
-                <Typography onClick={() => history.push("/contact")} className={`${classes.navBarItem} ${hideOnSmall && classes.contact}`} variant={textVariant}>contact</Typography>
+                <Link to={routes.contact} className={`${classes.navBarItem} ${hideOnSmall && classes.contact}`}>
+                    <Typography variant={textVariant}>contact</Typography>
+                </Link>
             </Tooltip>
         </React.Fragment>
     )

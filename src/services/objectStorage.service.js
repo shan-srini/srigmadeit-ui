@@ -1,17 +1,21 @@
-import ibm from 'ibm-cos-sdk'
+// import s3 from 'ibm-cos-sdk'
+const AWS = require("aws-sdk");
 const Compress = require('compress.js')
 
-const ibmCOS = {
+const COS = {
     uploadCOS: uploadCOS
 }
-export default ibmCOS;
+export default COS;
 
 // upload to COS
 async function uploadCOS(secretConfig, objectIDs, objects, setLoadingStatusText) {
-    var cos = new ibm.S3(secretConfig);
+    secretConfig.s3ForcePathStyle = true;
+    secretConfig.region = 'us-ashburn-1'
+    secretConfig.signatureVersion = 'v4'
+    var cos = new AWS.S3(secretConfig);
     const upload = (media_id, file) => {
-        return cos.putObject({
-            Bucket: 'srigmadeit-storage-cos-standard-s6x',
+        return cos.upload({
+            Bucket: 'srigmadeit',
             ACL: 'public-read',
             Key: media_id,
             Body: file,
@@ -27,12 +31,13 @@ async function uploadCOS(secretConfig, objectIDs, objects, setLoadingStatusText)
     setLoadingStatusText && setLoadingStatusText("Attempting to compress files... This may take a while.");
     // compress files
     objects = await compress(objects);
-    console.log(objects)
+    // console.log(objects)
     // upload files
     for (let ii = 0; ii < objects.length; ii++) {
         setLoadingStatusText && setLoadingStatusText("Files are compressed, uploading files to IBM Cloud storage. \n file:" + ii)
         upload(objectIDs[ii], objects[ii]);
     }
+    setLoadingStatusText("Done")
 }
 
 function compress(files) {
@@ -47,7 +52,7 @@ function compress(files) {
 }
 
 async function deleteCOS(secretConfig, objectIDs) {
-    var cos = new ibm.S3(secretConfig);
+    var cos = new s3.S3(secretConfig);
     const deleteObjects = (toDelete) => {
         return cos.deleteObjects({
             Bucket: 'srigmadeit-storage-cos-standard-s6x',

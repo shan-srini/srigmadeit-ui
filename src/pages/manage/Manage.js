@@ -5,12 +5,12 @@ import CloudStorageContext from './CloudStorageContext.js'
 
 const Upload = () => {
     const [loggedIn, setLoggedIn] = React.useState(false);
-    const [ibmConfig, setIbmConfig] = React.useState({});
+    const [cosConfig, setCosConfig] = React.useState({});
     return (
         !loggedIn ?
-            <Login setIbmConfig={(value) => setIbmConfig(value)} setLoggedIn={(value) => setLoggedIn(value)} />
+            <Login setCosConfig={(value) => setCosConfig(value)} setLoggedIn={(value) => setLoggedIn(value)} />
             :
-            <CloudStorageContext.Provider value={ibmConfig}>
+            <CloudStorageContext.Provider value={cosConfig}>
                 <ManageContent />
             </CloudStorageContext.Provider>
     )

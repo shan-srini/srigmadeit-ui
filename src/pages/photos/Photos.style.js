@@ -16,14 +16,15 @@ const style = makeStyles((theme) => ({
         }
     },
     photosPageTitle: {
-        position: 'absolute',
+        position: 'fixed',
         top: '9vh',
+        fontWeight: '800',
         left: '0',
         right: '0',
         marginLeft: 'auto',
         marginRight: 'auto',
         width: 'fit-content',
-        color: 'green',
+        color: 'white',
         [theme.breakpoints.down('xs')]: {
             top: theme.spacing(8)
         }

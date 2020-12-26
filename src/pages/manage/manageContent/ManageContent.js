@@ -5,11 +5,13 @@ import style from './ManageContent.style.js'
 import ManageGallery from './gallery/ManageGallery.js'
 import ManageStaticPhotos from './staticPhotos/ManageStaticPhotos.js'
 import ManageStaticVideos from './staticVideos/ManageStaticVideos.js'
+import CloudStorageContext from '../CloudStorageContext.js'
 
 const ManageContent = (props) => {
     const classes = style();
     const [value, setValue] = React.useState(0);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const cosConfig = React.useContext(CloudStorageContext)
 
     const open = Boolean(anchorEl);
     return (
@@ -45,7 +47,7 @@ const ManageContent = (props) => {
                 </Tabs>
             </Popover>
             <TabPanel value={value} index={0}>
-                <ManageGallery />
+                <ManageGallery cosConfig={cosConfig} />
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <ManageStaticPhotos />

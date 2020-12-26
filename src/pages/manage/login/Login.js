@@ -14,7 +14,7 @@ import style from './Login.style.js';
 function Login(props) {
     const classes = style();
     // callback on success to set IBM secret
-    const setIbmConfig = props.setIbmConfig;
+    const setCosConfig = props.setCosConfig;
     // callback on success to let parent component know success
     const signalLoginSuccess = props.setLoggedIn;
     // state
@@ -26,7 +26,7 @@ function Login(props) {
         srigmadeitAPI.login(username, password)
             .then((response) => {
                 if (response.success) {
-                    setIbmConfig(response.ibmConfig);
+                    setCosConfig(response.cosConfig);
                     signalLoginSuccess(true);
                 } else {
                     setLoginFail(true)

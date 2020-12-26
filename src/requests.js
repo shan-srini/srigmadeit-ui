@@ -7,10 +7,16 @@ const requests = axios.create({
 // responses from api should always contain 'success' boolean key, reject promise if this is false
 requests.interceptors.response.use(function (response) {
     if (response.data.hasOwnProperty('success') && !response.data['success']) {
-        return Promise.reject(response);
+        throw "success: FALSE"
     } else {
         return response;
     }
+}, function (error) {
+    if (error.response.status === 401) {
+        window.alert("Unauthorized")
+        window.location.href = "/upload"
+    }
+    throw error.response.data.log ? error.response.data.log : error.response.data;
 })
 
 // headers and options

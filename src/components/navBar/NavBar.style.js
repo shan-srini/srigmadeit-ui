@@ -16,6 +16,11 @@ const style = makeStyles((theme) => ({
     },
     navBarItem: {
         cursor: 'pointer',
+        textDecoration: 'none',
+        color: theme.palette.text.primary,
+        '&:hover': {
+            color: theme.palette.secondary.main
+        }
     },
     events: {
         order: 1,
