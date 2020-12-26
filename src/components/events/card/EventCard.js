@@ -9,7 +9,7 @@ import routes from '../../../routes.js';
 const EventCard = ({ eventMeta }) => {
     const classes = style();
     const eventBackgroundSrc = mediaMetaToURL(eventMeta);
-    const { name } = eventMeta;
+    const { name, _id } = eventMeta;
     let { timestamp } = eventMeta;
     if (eventMeta.timestamp) {
         let dateOb = new Date(eventMeta.timestamp * 1000); // python datetime uses seconds, javascript uses milliseconds...
@@ -17,7 +17,7 @@ const EventCard = ({ eventMeta }) => {
     }
     return (
         <Container className={classes.eventCardContainer} elevation={20}>
-            <Link to={routes.events + '/' + name} style={{ textDecoration: 'none' }}>
+            <Link to={routes.events + '/' + _id} style={{ textDecoration: 'none' }}>
                 <Paper className={classes.eventCardPictureContainer}>
                     <LazyImage className={classes.eventCardPicture} src={eventBackgroundSrc} />
                 </Paper>

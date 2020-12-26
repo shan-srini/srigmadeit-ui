@@ -6,6 +6,7 @@ const api = routes.services.srigmadeit;
 const srigmadeitAPI = {
     createEvent: createEvent,
     getEvents: getEvents,
+    getEventMeta: getEventMeta,
     createCategory: createCategory,
     getCategories: getCategories,
     getMedia: getMedia,
@@ -48,8 +49,8 @@ function getEvents(page = 0, size = 25) {
 }
 
 // get event info (eventMeta & categories)
-function getEvent(eventId) {
-    const endpoint = new URL(api.events + eventId)
+function getEventMeta(eventId) {
+    const endpoint = new URL(api.eventMeta(eventId))
     return requests.get(endpoint)
         .then((response) => {
             return response.data;

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import routes from './routes'
 
 const requests = axios.create({
     // configs
@@ -14,7 +15,10 @@ requests.interceptors.response.use(function (response) {
 }, function (error) {
     if (error.response.status === 401) {
         window.alert("Unauthorized")
-        window.location.href = "/upload"
+        window.location.href = routes.upload
+    }
+    if (error.response.status === 404) {
+        window.location.href = routes.notFound
     }
     throw error.response.data.log ? error.response.data.log : error.response.data;
 })
