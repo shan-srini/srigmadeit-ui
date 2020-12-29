@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Tabs, Tab, Container } from '@material-ui/core';
 import TabPanel from '../ux/tabPanel/TabPanel'
 import Photos from '../photos/Photos'
 
-const Categories = ({ categories }) => {
+const Categories = ({ categories, startTab }) => {
     const [tabValue, setTabValue] = React.useState(0);
     const handleTabChange = (e, value) => {
         setTabValue(value);
     }
+    useEffect(() => { if (startTab) setTabValue(startTab) }, [startTab]);
     return (
         <React.Fragment>
             <Tabs

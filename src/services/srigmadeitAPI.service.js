@@ -36,14 +36,17 @@ function createEvent(eventName, timestamp) {
         .catch((error) => { console.log(error); throw "Create event error"; })
 }
 
-// get all events
-function getEvents(page = 0, size = 25) {
+// get all events (returns object with events and total count)
+function getEvents(page = 0, size = 25, searchName) {
     const endpoint = new URL(api.events);
+    if (searchName) {
+        endpoint.searchParams.append('name', searchName);
+    }
     endpoint.searchParams.append('page', page)
     endpoint.searchParams.append('size', size)
     return requests.get(endpoint)
         .then((response) => {
-            return response.data.events;
+            return response.data;
         })
         .catch((error) => { console.log(error); return []; })
 }

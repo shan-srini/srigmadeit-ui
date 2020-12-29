@@ -24,8 +24,8 @@ function App() {
                             <Route exact path={routes.photos} component={Photos} />
                             <Route exact path={routes.upload} component={Manage} />
                             <Route exact path={routes.events} component={AllEvents} />
-                            <Route exact path={routes.events + '/:eventId/'} component={EventPage} />
                             <Route exact path={routes.events + '/:eventId/:categoryName'} component={EventPage} />
+                            <Route exact path={routes.events + '/:eventId/'} component={EventPage} />
                             <Route exact path={'/404'} component={() => <div>notfound</div>} />
                             <Route component={() => <div>notfound</div>} />
                         </Switch>

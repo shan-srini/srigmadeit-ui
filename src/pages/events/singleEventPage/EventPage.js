@@ -10,13 +10,18 @@ const EventPage = (props) => {
     const { eventId, categoryName } = useParams();
     const [eventName, setEventName] = React.useState(props.location.eventName);
     const [timestamp, setTimestamp] = React.useState(props.location.timestamp);
-    const [categories, setCategories] = React.useState([])
+    const [categories, setCategories] = React.useState([]);
+    const [startTab, setStartTab] = React.useState(null);
     useEffect(() => {
         srigmadeitAPI.getEventMeta(eventId).then((res) => {
             // if someone is navigating to a specific category for this event, just double check it exists
             if (categoryName) {
-                if (res.categories.findIndex((categoryMeta) => categoryMeta.name === categoryName) === -1)
-                    window.location.href = routes.notFound
+                let categoryNameLower = categoryName.toLowerCase();
+                let foundIndex;
+                if ((foundIndex = res.categories.findIndex((categoryMeta) => categoryMeta.name.toLowerCase() === categoryNameLower)) === -1)
+                    window.location.href = routes.notFound;
+                else
+                    setStartTab(foundIndex);
             }
             // set presentational info
             if (!eventName) // may have been passed if page is being accessed from EventCard
@@ -32,7 +37,7 @@ const EventPage = (props) => {
     return (
         <div style={{ marginTop: '64px' }}>
             <EventHeroBG backgroundSrc={routes.dataSources.cos + eventId} eventName={eventName} timestamp={timestamp} />
-            <Categories categories={categories} />
+            <Categories categories={categories} startTab={startTab} />
         </div>
     )
 }
