@@ -13,7 +13,6 @@ const ManageContent = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const cosConfig = React.useContext(CloudStorageContext)
 
-    const open = Boolean(anchorEl);
     return (
         <Container className={classes.manageContentContainer}>
             <div className={classes.navPopoverButton} onClick={(event) => setAnchorEl(event.currentTarget)}>

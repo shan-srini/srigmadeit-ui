@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { Container } from '@material-ui/core'
 import { useParams } from 'react-router-dom'
 import srigmadeitAPI from '../../../services/srigmadeitAPI.service'
 import routes from '../../../routes'
 import EventHeroBG from '../../../components/events/heroBG/heroBG'
-import Categories from '../../../components/categories/categories'
+import Categories from '../../../components/categories/Categories'
 
 const EventPage = (props) => {
     const { eventId, categoryName } = useParams();

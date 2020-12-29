@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Tabs, Tab, Container } from '@material-ui/core';
+import { Tabs, Tab } from '@material-ui/core';
 import TabPanel from '../ux/tabPanel/TabPanel'
 import Photos from '../photos/Photos'
 

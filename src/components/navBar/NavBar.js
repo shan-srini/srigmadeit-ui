@@ -44,7 +44,7 @@ const NavBar = (props) => {
             <Toolbar className={classes.navBar}>
                 <NavBarOptions classes={classes} history={history} hideOnSmall={true} />
                 <Tooltip title="Home">
-                    <img src={SmiLogo} onClick={() => history.push("/")} className={`${classes.navBarItem} ${classes.smiLogo}`} />
+                    <img src={SmiLogo} onClick={() => history.push("/")} className={`${classes.navBarItem} ${classes.smiLogo}`} alt="srigmadeit logo" />
                 </Tooltip>
 
                 <div onClick={() => setOpen(!open)} className={`${classes.navBarItem} ${classes.menuButton}`}>

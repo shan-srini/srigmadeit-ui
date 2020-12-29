@@ -17,11 +17,6 @@ const EventGrid = ({ pageable, pageHeadingText }) => {
     const [totalPages, setTotalPages] = React.useState(1);
     const [textFieldValue, setTextFieldValue] = React.useState('');
     const [searchText, setSearchText] = React.useState('');
-    React.useEffect(() => {
-        let mounted = true;
-        getEvents();
-        return () => mounted = false;
-    }, [page, searchText]);
 
     const getEvents = () => {
         let getPage = page - 1;
@@ -32,6 +27,13 @@ const EventGrid = ({ pageable, pageHeadingText }) => {
                 setTotalPages(Math.ceil(totalCount / perPageCount));
             });
     }
+
+    React.useEffect(() => {
+        let mounted = true;
+        getEvents();
+        return () => mounted = false;
+    }, [page, searchText]);
+
 
     return (
         <Container className={classes.eventCardsGridContainer}>

@@ -1,4 +1,4 @@
-const srigmadeitBaseURL = process.env.NODE_ENV == 'development' ? 'http://192.168.1.202:5000/api' : ''
+const srigmadeitBaseURL = process.env.NODE_ENV === 'development' ? 'http://192.168.1.202:5000/api' : ''
 
 const routes = {
     home: "/",

@@ -14,7 +14,7 @@ const ManageGallery = (props) => {
     const { cosConfig } = props;
     useEffect(() => {
         // just get the first 500 events, one time expensive call for ease.
-        srigMadeItAPI.getEvents(0, 500).then((ret) => { setAllEventsMeta(ret); setEventId(ret[0]._id); });
+        srigMadeItAPI.getEvents(0, 500).then((ret) => { setAllEventsMeta(ret.events); setEventId(ret.events[0]._id); });
     }, []);
     return (
         <Container>

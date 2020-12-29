@@ -18,7 +18,7 @@ const BootLogo = (props) => {
     return (
         display ?
             <Container maxWidth={false} id="loadingLogoContainer" className={classes.loadingLogoContainer}>
-                <img id="loadingLogo" className={classes.loadingLogo} src={bootLogo} />
+                <img alt="srigmadeit bootLogo" id="loadingLogo" className={classes.loadingLogo} src={bootLogo} />
             </Container>
             :
             null

@@ -4,7 +4,6 @@ import srigmadeitAPI, { dataSources } from '../../../../../services/srigmadeitAP
 import cosService from '../../../../../services/objectStorage.service'
 
 const ManageCategories = (props) => {
-    const { eventId, cosC } = props;
     return (
         <Container>
             <CreateCategory {...props} />

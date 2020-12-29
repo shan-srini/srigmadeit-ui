@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, TextField, Typography, Button, Select, MenuItem } from '@material-ui/core';
+import { Container, TextField, Typography, Button } from '@material-ui/core';
 import style from './ManageEvents.style.js';
 import srigmadeitAPI from '../../../../../services/srigmadeitAPI.service.js';
 import storageAPI from '../../../../../services/objectStorage.service.js';

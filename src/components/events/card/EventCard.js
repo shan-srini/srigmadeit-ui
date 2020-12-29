@@ -2,7 +2,7 @@ import React from 'react'
 import { Paper, Typography, Container } from '@material-ui/core';
 import style from './EventCard.style.js'
 import { mediaMetaToURL } from '../../../services/srigmadeitAPI.service.js';
-import LazyImage from '../../ux/LazyImage/LazyImage.js';
+import LazyImage from '../../ux/lazyImage/LazyImage';
 import { Link } from 'react-router-dom';
 import routes from '../../../routes.js';
 

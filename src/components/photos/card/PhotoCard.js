@@ -1,6 +1,5 @@
 import React from 'react'
-import { Container } from '@material-ui/core'
-import LazyImage from '../../ux/LazyImage/LazyImage'
+import LazyImage from '../../ux/lazyImage/LazyImage'
 import style from './PhotoCard.style'
 import CloseButton from '../../ux/closeButton/CloseButton'
 

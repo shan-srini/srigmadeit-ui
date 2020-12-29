@@ -49,9 +49,9 @@ const LazyImage = (props) => {
 
     return (
         visible ?
-            <img {...props} />
+            <img alt="an original srigmadeit picture..." {...props} />
             :
-            <img ref={setImageRef} src={placeHolder} style={{ width: '100%', height: '100%', borderRadius: '15px' }} />
+            <img alt="" ref={setImageRef} src={placeHolder} style={{ width: '100%', height: '100%', borderRadius: '15px' }} />
     )
 }
 

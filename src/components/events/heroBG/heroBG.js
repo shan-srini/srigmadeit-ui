@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container, Typography, Paper } from '@material-ui/core';
-import LazyImage from '../../ux/lazyImage/LazyImage'
 import style from './heroBG.style'
 
 const HeroBG = ({ backgroundSrc, eventName, timestamp }) => {

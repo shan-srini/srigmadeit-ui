@@ -1,5 +1,4 @@
-// import s3 from 'ibm-cos-sdk'
-const AWS = require("aws-sdk");
+import { S3 } from 'aws-sdk'
 const Compress = require('compress.js')
 
 const COS = {
@@ -9,10 +8,7 @@ export default COS;
 
 // upload to COS
 async function uploadCOS(secretConfig, objectIDs, objects, setLoadingStatusText) {
-    secretConfig.s3ForcePathStyle = true;
-    secretConfig.region = 'us-ashburn-1'
-    secretConfig.signatureVersion = 'v4'
-    var cos = new AWS.S3(secretConfig);
+    var cos = new S3(secretConfig);
     const upload = (media_id, file) => {
         return cos.upload({
             Bucket: 'srigmadeit',
@@ -52,7 +48,7 @@ function compress(files) {
 }
 
 async function deleteCOS(secretConfig, objectIDs) {
-    var cos = new s3.S3(secretConfig);
+    var cos = new S3(secretConfig);
     const deleteObjects = (toDelete) => {
         return cos.deleteObjects({
             Bucket: 'srigmadeit-storage-cos-standard-s6x',

@@ -22,7 +22,7 @@ const profilePicStyle = {
 const Bg = () => {
     return (
         <div style={animationStyle}>
-            <img src={homeBackProfilePic} style={profilePicStyle} />
+            <img alt="srigmadeit profile picture" src={homeBackProfilePic} style={profilePicStyle} />
         </div>
     )
 }

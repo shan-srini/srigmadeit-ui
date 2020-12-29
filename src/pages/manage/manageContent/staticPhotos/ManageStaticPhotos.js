@@ -41,19 +41,19 @@ async function setStaticImage(e, cloudStorageConfig, index, pictureRef) {
     }
 }
 
-const RenderPreview = ({ indexSelected, imgRef }) => {
-    const classes = photosStaticPageStyle();
-    const reader = new FileReader();
-    if (!imgRef || !imgRef.current || !imgRef.current.files[0]) return (<div></div>);
-    reader.readAsDataURL(imgRef.current.files[0]);
-    return reader.onload((e) => {
-        console.log(e)
-        return (
-            <div>
-                <img src={e.target.result} />
-            </div>
-        )
-    })
-}
+// const RenderPreview = ({ indexSelected, imgRef }) => {
+//     const classes = photosStaticPageStyle();
+//     const reader = new FileReader();
+//     if (!imgRef || !imgRef.current || !imgRef.current.files[0]) return (<div></div>);
+//     reader.readAsDataURL(imgRef.current.files[0]);
+//     return reader.onload((e) => {
+//         console.log(e)
+//         return (
+//             <div>
+//                 <img src={e.target.result} />
+//             </div>
+//         )
+//     })
+// }
 
 export default ManageStaticPhotos;
