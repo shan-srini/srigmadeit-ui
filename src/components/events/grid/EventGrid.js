@@ -15,16 +15,17 @@ const EventGrid = ({ pageable, pageHeadingText }) => {
     const [page, setPage] = React.useState(1);
     const [perPageCount, setPerPageCount] = React.useState(4);
     const [totalPages, setTotalPages] = React.useState(1);
+    const [textFieldValue, setTextFieldValue] = React.useState('');
     const [searchText, setSearchText] = React.useState('');
     React.useEffect(() => {
         let mounted = true;
         getEvents();
         return () => mounted = false;
-    }, [page]);
+    }, [page, searchText]);
 
-    const getEvents = (resetSearchName = false) => {
+    const getEvents = () => {
         let getPage = page - 1;
-        srigmadeitAPI.getEvents(getPage, perPageCount, resetSearchName ? '' : searchText)
+        srigmadeitAPI.getEvents(getPage, perPageCount, searchText)
             .then(res => {
                 setEvents(res.events);
                 let totalCount = res.count;
@@ -38,15 +39,15 @@ const EventGrid = ({ pageable, pageHeadingText }) => {
                 <Typography variant="h5" className={classes.pageHeadingText}>{pageHeadingText}</Typography>
                 {
                     pageable &&
-                    <form onSubmit={(e) => { e.preventDefault(); getEvents(); }}>
+                    <form onSubmit={(e) => { e.preventDefault(); setSearchText(textFieldValue); }}>
                         <TextField
-                            value={searchText}
+                            value={textFieldValue}
                             label="Search"
-                            onChange={(e) => setSearchText(e.target.value)}
+                            onChange={(e) => setTextFieldValue(e.target.value)}
                             inputProps={{ className: classes.input }}
                             InputProps={{
                                 endAdornment:
-                                    <Typography color="primary" variant="h6" onClick={() => { setSearchText(''); getEvents(true); }} style={{ cursor: 'pointer' }}>
+                                    <Typography color="primary" variant="h6" onClick={() => { setSearchText(''); setTextFieldValue('') }} style={{ cursor: 'pointer' }}>
                                         X
                                     </Typography>
                             }}
