@@ -7,14 +7,14 @@ import React, { useState, useEffect } from 'react'
 // 1x1 png transparent purple
 const placeHolder =
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkSPxfDwADqgHh5Lh3ywAAAABJRU5ErkJggg=='
-const LazyImage = ({ src, className, onClick }) => {
-    const [renderSrc, setImageSrc] = useState(placeHolder)
+const LazyImage = (props) => {
+    const [visible, setVisible] = useState(false)
     const [imageRef, setImageRef] = useState()
     useEffect(() => {
         let observer
         let unmounted = false
 
-        if (imageRef && renderSrc === placeHolder) {
+        if (imageRef && visible === false) {
             if (IntersectionObserver) {
                 observer = new IntersectionObserver(
                     entries => {
@@ -24,7 +24,7 @@ const LazyImage = ({ src, className, onClick }) => {
                                 !unmounted &&
                                 (entry.intersectionRatio > 0 || entry.isIntersecting)
                             ) {
-                                setImageSrc(src);
+                                setVisible(true);
                             }
                         })
                     },
@@ -35,7 +35,7 @@ const LazyImage = ({ src, className, onClick }) => {
                 observer.observe(imageRef)
             } else {
                 // Old browsers fallback
-                setImageSrc(src);
+                setVisible(true);
                 console.log("Unable to lazy load images. IntersectionObserver API missing.");
             }
         }
@@ -48,7 +48,10 @@ const LazyImage = ({ src, className, onClick }) => {
     })
 
     return (
-        <img ref={setImageRef} className={className} src={renderSrc} onClick={onClick} />
+        visible ?
+            <img {...props} />
+            :
+            <img ref={setImageRef} src={placeHolder} style={{ width: '100%', height: '100%', borderRadius: '15px' }} />
     )
 }
 
