@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
-import { Tabs, Tab } from '@material-ui/core';
+import { Tabs, Tab } from '@material-ui/core'
 import TabPanel from '../ux/tabPanel/TabPanel'
 import Photos from '../photos/Photos'
+import routes from '../../routes'
 
-const Categories = ({ categories, startTab }) => {
+const Categories = ({ categories, startTab, eventUrlId }) => {
     const [tabValue, setTabValue] = React.useState(0);
     const handleTabChange = (e, value) => {
         setTabValue(value);
+        history.pushState(null, '', `${routes.events}/${eventUrlId}/${categories[value].name}`);
     }
     useEffect(() => { if (startTab) setTabValue(startTab) }, [startTab]);
     return (

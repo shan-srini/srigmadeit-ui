@@ -36,7 +36,7 @@ const EventPage = (props) => {
     return (
         <div style={{ marginTop: '64px' }}>
             <EventHeroBG backgroundSrc={routes.dataSources.cos + eventId} eventName={eventName} timestamp={timestamp} />
-            <Categories categories={categories} startTab={startTab} />
+            <Categories categories={categories} startTab={startTab} eventUrlId={eventId} />
         </div>
     )
 }
