@@ -2,12 +2,15 @@ import React from 'react'
 import LazyImage from '../../ux/lazyImage/LazyImage'
 import style from './PhotoCard.style'
 import CloseButton from '../../ux/closeButton/CloseButton'
+import SimpleArrow from '../../ux/simpleArrow/SimpleArrow'
 
-const PhotoCard = ({ src }) => {
+const PhotoCard = ({ src, open, setOpen, displayPrevArrow, displayNextArrow, openPrevPic, openNextPic }) => {
     const classes = style();
-    const [open, setOpen] = React.useState(false);
-
-    const handleOpenImage = () => {
+    const handleOpenImage = (e) => {
+        if (open) {
+            e.stopPropagation(); // so that parent onClick to close the open picture doesn't catch on the image
+            return;
+        }
         document.body.style.overflowY = 'hidden';
         setOpen(true);
     }
@@ -17,8 +20,17 @@ const PhotoCard = ({ src }) => {
         setOpen(false);
     }
 
+    const handleLeftArrowClick = (e) => {
+        e.stopPropagation();
+        openPrevPic();
+    }
+    const handleRightArrowClick = (e) => {
+        e.stopPropagation();
+        openNextPic();
+    }
+
     return (
-        <div className={open ? classes.photoCardOpenContainer : classes.photoCardContainer}>
+        <div className={open ? classes.photoCardOpenContainer : classes.photoCardContainer} onClick={() => { open && handleCloseImage() }}>
             <LazyImage onClick={handleOpenImage} src={src} className={open ? classes.photoCardPictureOpenContainer : classes.photoCardPictureContainer} />
             {open ?
                 <div className={classes.closeButton}>
@@ -26,6 +38,18 @@ const PhotoCard = ({ src }) => {
                 </div>
                 :
                 null
+            }
+            {
+                open && displayPrevArrow ?
+                    <SimpleArrow left={true} onClick={handleLeftArrowClick} style={{ position: 'absolute', top: '45%', left: '16px', order: '0' }} />
+                    :
+                    null
+            }
+            {
+                open && displayNextArrow ?
+                    <SimpleArrow right={true} onClick={handleRightArrowClick} style={{ position: 'absolute', top: '45%', right: '16px', order: '1' }} />
+                    :
+                    null
             }
         </div>
     )

@@ -16,7 +16,7 @@ const animationStyle = {
 }
 
 const profilePicStyle = {
-    height: '75%',
+    height: '90%',
 }
 
 const Bg = () => {

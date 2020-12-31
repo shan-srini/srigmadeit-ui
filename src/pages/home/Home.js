@@ -1,9 +1,9 @@
-import { Container } from '@material-ui/core'
 import React from 'react'
-import BootLogo from '../../components/bootLogo/BootLogo.js'
+import { Container } from '@material-ui/core'
 import style from './Home.style.js'
+import BootLogo from '../../components/bootLogo/BootLogo.js'
 import EventGrid from '../../components/events/grid/EventGrid'
-import Bg from './HomeBackground'
+import Bg from './HomeBackground.js'
 
 const Home = () => {
     const classes = style();

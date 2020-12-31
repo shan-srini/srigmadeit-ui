@@ -17,7 +17,7 @@ const style = makeStyles((theme) => ({
     },
     photosPageTitle: {
         position: 'absolute',
-        top: '9vh',
+        top: '65px',
         fontWeight: '800',
         left: '0',
         right: '0',

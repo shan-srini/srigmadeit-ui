@@ -1,7 +1,7 @@
 {
-  "short_name": "srigmadeit",
   "name": "srigmadeit",
-  "description": "",
+  "short_name": "srigmadeit",
+  "description": "A gallery - by Srig",
   "icons": [
     {
       "src": "favicon.ico",
@@ -12,14 +12,9 @@
       "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "homepage_url": "srigmadeit.com",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#798337",

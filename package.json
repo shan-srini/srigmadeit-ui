@@ -1,13 +1,13 @@
 {
   "name": "srigmadeit",
   "version": "1.0.0",
-  "description": "",
+  "description": "A gallery - by Srig",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel ./public/index.html",
     "prebuild": "rm -rf dist",
-    "build": "npm run prebuild && parcel build NODE_ENV=production --detailed-report --experimental-scope-hoisting --no-source-maps ./public/index.html"
+    "build": "npm run prebuild && parcel build NODE_ENV=production --detailed-report --no-source-maps ./public/index.html"
   },
   "keywords": [],
   "author": "Shanmukha Srinivasan",

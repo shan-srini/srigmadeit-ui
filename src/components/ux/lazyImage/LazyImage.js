@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react'
 // 1x1 png transparent purple
 const placeHolder =
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkSPxfDwADqgHh5Lh3ywAAAABJRU5ErkJggg=='
-const LazyImage = (props) => {
+const LazyImage = ({ src, className, onClick }) => {
     const [visible, setVisible] = useState(false)
     const [imageRef, setImageRef] = useState()
     useEffect(() => {
@@ -48,10 +48,7 @@ const LazyImage = (props) => {
     })
 
     return (
-        visible ?
-            <img alt="an original srigmadeit picture..." {...props} />
-            :
-            <img alt="" ref={setImageRef} src={placeHolder} style={{ width: '100%', height: '100%', borderRadius: '15px' }} />
+        <img alt="an original srigmadeit picture..." ref={setImageRef} src={visible ? src : placeHolder} onClick={onClick} className={className} style={visible ? {} : { width: '100%', height: '100%', borderRadius: '15px' }} />
     )
 }
 

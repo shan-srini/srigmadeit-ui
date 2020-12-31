@@ -32,7 +32,6 @@ const style = makeStyles((theme) => ({
         left: 0,
         bottom: 0,
         right: 0,
-        zIndex: 1000,
         height: '100vh',
         width: '100vw',
         backgroundColor: 'rgb(0, 0, 0, 0.5)',
