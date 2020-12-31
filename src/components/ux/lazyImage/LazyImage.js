@@ -48,7 +48,7 @@ const LazyImage = ({ src, className, onClick }) => {
     })
 
     return (
-        <img alt="an original srigmadeit picture..." ref={setImageRef} src={visible ? src : placeHolder} onClick={onClick} className={className} style={visible ? {} : { width: '100%', height: '100%', borderRadius: '15px' }} />
+        <img alt="an original srigmadeit picture..." ref={setImageRef} src={visible ? src : placeHolder} onClick={onClick} className={className} style={{ width: '100%', height: '100%', borderRadius: '15px' }} />
     )
 }
 
