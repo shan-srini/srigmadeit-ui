@@ -18,13 +18,13 @@ const style = makeStyles((theme) => ({
     },
     eventMetaBar: {
         backgroundColor: 'rgba(0, 0, 0, .50)',
-        // backdropFilter: 'blur(5px)',
         padding: theme.spacing(1),
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        textAlign: 'center',
     },
     heroText: {
         width: 'fit-content'

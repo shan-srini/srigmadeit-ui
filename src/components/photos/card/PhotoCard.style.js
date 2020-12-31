@@ -15,8 +15,8 @@ const style = makeStyles((theme) => ({
         borderRadius: '15px',
         maxHeight: '200px',
         maxWidth: '100%',
-        height: 'auto',
-        width: 'auto',
+        height: '100%',
+        width: '100%',
         boxShadow: `0px 0px 4px #000`,
         objectFit: "cover",
         objectPosition: "center",
@@ -38,7 +38,6 @@ const style = makeStyles((theme) => ({
     },
     photoCardPictureOpenContainer: {
         transition: '.5s',
-        marginTop: theme.spacing(8),
         maxHeight: '90vh',
         maxWidth: '90vw',
         height: 'auto',
