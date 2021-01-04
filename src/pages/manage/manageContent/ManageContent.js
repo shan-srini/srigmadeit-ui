@@ -4,7 +4,7 @@ import TabPanel from '../../../components/ux/tabPanel/TabPanel.js'
 import style from './ManageContent.style.js'
 import ManageGallery from './gallery/ManageGallery.js'
 import ManageStaticPhotos from './staticPhotos/ManageStaticPhotos.js'
-import ManageStaticVideos from './staticVideos/ManageStaticVideos.js'
+import ManageVideos from './videos/ManageVideos.js'
 import CloudStorageContext from '../CloudStorageContext.js'
 
 const ManageContent = (props) => {
@@ -42,7 +42,7 @@ const ManageContent = (props) => {
                 >
                     <Tab label="Events & categories " />
                     <Tab label="Static Photos" />
-                    <Tab label="Static Videos" />
+                    <Tab label="Videos" />
                 </Tabs>
             </Popover>
             <TabPanel value={value} index={0}>
@@ -52,7 +52,7 @@ const ManageContent = (props) => {
                 <ManageStaticPhotos />
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <ManageStaticVideos />
+                <ManageVideos cosConfig={cosConfig} />
             </TabPanel>
         </Container >
     );

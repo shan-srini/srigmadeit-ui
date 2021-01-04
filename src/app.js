@@ -9,6 +9,7 @@ import Home from './pages/home/Home'
 import Photos from './pages/photos/Photos'
 import AllEvents from './pages/events/allEvents/AllEvents'
 import EventPage from './pages/events/singleEventPage/EventPage'
+import Videos from './pages/videos/Videos'
 import Contact from './pages/contact/Contact'
 const Manage = lazy(() => import('./pages/manage/Manage'));
 
@@ -27,6 +28,7 @@ function App() {
                             <Route exact path={routes.events} component={AllEvents} />
                             <Route exact path={routes.events + '/:eventId/:categoryName'} component={EventPage} />
                             <Route exact path={routes.events + '/:eventId/'} component={EventPage} />
+                            <Route exact path={routes.videos} component={Videos} />
                             <Route exact path={routes.contact} component={Contact} />
                             <Route exact path={'/404'} component={() => <div>notfound</div>} />
                             <Route component={() => <div>notfound</div>} />

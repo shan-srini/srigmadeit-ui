@@ -10,6 +10,7 @@ const srigmadeitAPI = {
     createCategory: createCategory,
     getCategories: getCategories,
     getMedia: getMedia,
+    getVideos: getVideos,
     createMedia: createMedia,
     login: login
 }
@@ -17,6 +18,8 @@ export default srigmadeitAPI;
 
 export const dataSources = {
     COS: 'b2', // for now the only cloud object storage provider used. Backblaze B2
+    GD: 'gd',
+    DM: 'dm' // dailymotion videos
 }
 
 /**
@@ -53,7 +56,7 @@ function getEvents(page = 0, size = 25, searchName) {
 
 // get event info (eventMeta & categories)
 function getEventMeta(eventId) {
-    const endpoint = new URL(api.eventMeta(eventId))
+    const endpoint = api.eventMeta(eventId)
     return requests.get(endpoint)
         .then((response) => {
             return response.data;
@@ -96,12 +99,17 @@ function getCategories(eventId) {
  * @param {String} 
  * @param {int} count 
  */
-function createMedia(eventId, categoryId, source = dataSources.COS, count = 1) {
+function createMedia(eventId, categoryId, source = dataSources.COS, count = 1, request_id = false) {
     const endpoint = api.media(eventId, categoryId);
-    return requests.post(endpoint, {
+    const postBody = {
         source: source,
         count: count
-    }, { withCredentials: true })
+    }
+    if (request_id) { // Videos will already have a precreated unique id
+        postBody['request_id'] = request_id;
+    }
+    return requests.post(endpoint, postBody,
+        { withCredentials: true })
         .then((response) => {
             return response.data.media_ids;
         })
@@ -110,7 +118,8 @@ function createMedia(eventId, categoryId, source = dataSources.COS, count = 1) {
 
 // get all media for a category
 function getMedia(categoryId, page = 0, size = 25) {
-    const endpoint = new URL(api.getMedia(categoryId));
+    const endpoint = new URL(api.getMedia);
+    endpoint.searchParams.append('categoryId', categoryId);
     endpoint.searchParams.append('page', page);
     endpoint.searchParams.append('size', size);
     return requests.get(endpoint)
@@ -120,16 +129,33 @@ function getMedia(categoryId, page = 0, size = 25) {
         .catch((error) => console.log(error))
 }
 
+function getVideos(page = 0, size = 25) {
+    const endpoint = new URL(api.getMedia);
+    endpoint.searchParams.append('eventId', 'SRIGMADEIT_VIDEOS');
+    endpoint.searchParams.append('reverse', true);
+    endpoint.searchParams.append('page', page);
+    endpoint.searchParams.append('size', size);
+    return requests.get(endpoint)
+        .then((response) => {
+            return response.data;
+        })
+}
+
 // helper for getting urls from meta info of media/event
 export function mediaMetaToURL(mediaMeta) {
-    if (mediaMeta.type && mediaMeta._id) {
+    if (mediaMeta.source && mediaMeta._id) {
         if (mediaMeta.source === dataSources.COS) {
             return routes.dataSources.cos + mediaMeta._id;
         }
-        else if (mediaMeta.type === "video/youtube") {
-            return routes.dataSources.cos + mediaMeta._id;
+        else if (mediaMeta.source === dataSources.DM) {
+            return routes.dataSources.DM + mediaMeta._id;
         }
-    } else if (!mediaMeta.type && mediaMeta._id) {
+        else if (mediaMeta.source === dataSources.GD) {
+            let url = new URL(routes.dataSources.GD);
+            url.searchParams.append('id', mediaMeta._id);
+            return url.href;
+        }
+    } else if (!mediaMeta.source && mediaMeta._id) {
         // give COS a shot, otherwise this is corrupt data...
         // eventMeta currently doesn't set mediaType, since it's always photo
         return routes.dataSources.cos + mediaMeta._id;

@@ -7,7 +7,7 @@ const COS = {
 export default COS;
 
 // upload to COS
-async function uploadCOS(secretConfig, objectIDs, objects, setLoadingStatusText) {
+async function uploadCOS(secretConfig, objectIDs, objects, setLoadingStatusText = console.log) {
     var cos = new S3(secretConfig);
     const upload = (media_id, file) => {
         return cos.upload({

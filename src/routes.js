@@ -1,4 +1,4 @@
-const srigmadeitBaseURL = process.env.NODE_ENV === 'development' ? 'http://192.168.1.202:5000/api' : 'https://srigmadeit-api.herokuapp.com/api/'
+const srigmadeitBaseURL = process.env.NODE_ENV === 'development' ? 'http://192.168.1.202:5000/api' : 'https://srigmadeit-api.herokuapp.com/api'
 
 const routes = {
     home: "/",
@@ -14,13 +14,14 @@ const routes = {
             eventMeta: (eventId) => srigmadeitBaseURL + `/events/${eventId}`,
             categories: (eventId) => srigmadeitBaseURL + `/events/${eventId}/categories`,
             media: (eventId, categoryId) => srigmadeitBaseURL + `/events/${eventId}/categories/${categoryId}/media`,
-            getMedia: (categoryId) => srigmadeitBaseURL + `/media?categoryId=${categoryId}`,
+            getMedia: srigmadeitBaseURL + `/media`,
             login: srigmadeitBaseURL + '/login'
         }
     },
     dataSources: {
         cos: "https://photos.srigmadeit.com/file/srigmadeit/",
-        youtube: "",
+        GD: "https://drive.google.com/uc",
+        DM: "https://www.dailymotion.com/embed/video/",
         ORACLEcos: "https://objectstorage.us-ashburn-1.oraclecloud.com/n/idcgvw3idubd/b/srigmadeit-object-bucket/o/",
         IBMcos: "https://srigmadeit-storage-cos-standard-s6x.s3.us-east.cloud-object-storage.appdomain.cloud/",
     }

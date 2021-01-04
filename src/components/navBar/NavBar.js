@@ -6,7 +6,7 @@ import { Link, useHistory } from 'react-router-dom'
 import routes from '../../routes.js'
 import CloseButton from '../../components/ux/closeButton/CloseButton'
 
-const NavBarOptions = ({ classes, history, hideOnSmall }) => {
+const NavBarOptions = ({ classes, hideOnSmall }) => {
     const textVariant = hideOnSmall ? "h5" : "h2";
     return (
         <React.Fragment>
