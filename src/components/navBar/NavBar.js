@@ -51,6 +51,7 @@ const NavBar = (props) => {
                     <CloseButton open={open} onClick={() => setOpen(!open)} />
                 </div>
                 <Backdrop open={open} onClick={() => { setOpen(!open) }}>
+                    <div style={{ height: '100%', width: '100%', position: 'absolute', backgroundColor: 'rgba(0, 0, 0, .1)', backdropFilter: 'blur(2px)', WebkitBackdropFilter: 'blur(2px)', zIndex: -1 }}></div>
                     <Container className={classes.collapsedPageNavBarOptions}>
                         <NavBarOptions classes={classes} history={history} hideOnSmall={false} />
                     </Container>
