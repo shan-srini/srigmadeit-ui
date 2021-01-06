@@ -7,10 +7,10 @@ const COS = {
 export default COS;
 
 // upload to COS
-async function uploadCOS(secretConfig, objectIDs, objects, setLoadingStatusText = console.log) {
+async function uploadCOS(secretConfig, objectIDs, objects, setLoadingStatusText = console.log, shouldCompress = true) {
     var cos = new S3(secretConfig);
     const upload = (media_id, file) => {
-        return cos.upload({
+        return cos.putObject({
             Bucket: 'srigmadeit',
             ACL: 'public-read',
             Key: media_id,
@@ -24,13 +24,15 @@ async function uploadCOS(secretConfig, objectIDs, objects, setLoadingStatusText 
     }
     // just assert ObjectIDs and objects lengths are the same for sure
     if (objectIDs.length !== objects.length) throw "Did not receive IDs for all objects to upload to COS"
-    setLoadingStatusText && setLoadingStatusText("Attempting to compress files... This may take a while.");
     // compress files
-    objects = await compress(objects);
+    if (shouldCompress) {
+        setLoadingStatusText && setLoadingStatusText("Attempting to compress files... This may take a while.");
+        objects = await compress(objects);
+    }
     // console.log(objects)
     // upload files
     for (let ii = 0; ii < objects.length; ii++) {
-        setLoadingStatusText && setLoadingStatusText("Files are compressed, uploading files to IBM Cloud storage. \n file:" + ii)
+        setLoadingStatusText && setLoadingStatusText("now uploading files to Cloud storage. \n file:" + ii)
         upload(objectIDs[ii], objects[ii]);
     }
     setLoadingStatusText("Done")

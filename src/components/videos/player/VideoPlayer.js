@@ -37,7 +37,7 @@ const VideoPlayer = ({ src, videoName }) => {
             }
             {
                 errorExists ?
-                    <span style={circularProgressStyle}> There was an error loading this video. <br /> You may need to enable cookies. </span>
+                    <span style={circularProgressStyle}> There was an error loading this video. </span>
                     :
                     null
             }

@@ -17,9 +17,10 @@ const srigmadeitAPI = {
 export default srigmadeitAPI;
 
 export const dataSources = {
-    COS: 'b2', // for now the only cloud object storage provider used. Backblaze B2
-    GD: 'gd',
-    DM: 'dm' // dailymotion videos
+    photosCOS: 'b2', // Backblaze B2
+    ORACLE: 'oracle', // Oracle COS for videos
+    // GD: 'gd',
+    // DM: 'dm' // dailymotion videos
 }
 
 /**
@@ -99,14 +100,11 @@ function getCategories(eventId) {
  * @param {String} 
  * @param {int} count 
  */
-function createMedia(eventId, categoryId, source = dataSources.COS, count = 1, request_id = false) {
+function createMedia(eventId, categoryId, source = dataSources.photosCOS, count = 1) {
     const endpoint = api.media(eventId, categoryId);
     const postBody = {
         source: source,
         count: count
-    }
-    if (request_id) { // Videos will already have a precreated unique id
-        postBody['request_id'] = request_id;
     }
     return requests.post(endpoint, postBody,
         { withCredentials: true })
@@ -144,21 +142,23 @@ function getVideos(page = 0, size = 25) {
 // helper for getting urls from meta info of media/event
 export function mediaMetaToURL(mediaMeta) {
     if (mediaMeta.source && mediaMeta._id) {
-        if (mediaMeta.source === dataSources.COS) {
-            return routes.dataSources.cos + mediaMeta._id;
+        if (mediaMeta.source === dataSources.photosCOS) {
+            return routes.dataSources.photosCOS + mediaMeta._id;
+        } else if (mediaMeta.source === dataSources.ORACLE) {
+            return routes.dataSources.videosCOS + mediaMeta._id;
         }
-        else if (mediaMeta.source === dataSources.DM) {
-            return routes.dataSources.DM + mediaMeta._id;
-        }
-        else if (mediaMeta.source === dataSources.GD) {
-            let url = new URL(routes.dataSources.GD);
-            url.searchParams.append('id', mediaMeta._id);
-            return url.href;
-        }
+        // else if (mediaMeta.source === dataSources.DM) {
+        //     return routes.dataSources.DM + mediaMeta._id;
+        // }
+        // else if (mediaMeta.source === dataSources.GD) {
+        //     let url = new URL(routes.dataSources.GD);
+        //     url.searchParams.append('id', mediaMeta._id);
+        //     return url.href;
+        // }
     } else if (!mediaMeta.source && mediaMeta._id) {
-        // give COS a shot, otherwise this is corrupt data...
-        // eventMeta currently doesn't set mediaType, since it's always photo
-        return routes.dataSources.cos + mediaMeta._id;
+        // give photos a shot, otherwise this is corrupt data...?
+        // todo: mediaMeta should have had type all along! >:( :(
+        return routes.dataSources.photosCOS + mediaMeta._id;
     }
 }
 

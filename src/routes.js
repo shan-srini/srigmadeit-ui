@@ -19,10 +19,10 @@ const routes = {
         }
     },
     dataSources: {
-        cos: "https://photos.srigmadeit.com/file/srigmadeit/",
+        photosCOS: "https://photos.srigmadeit.com/file/srigmadeit/",
         GD: "https://drive.google.com/uc",
         DM: "https://www.dailymotion.com/embed/video/",
-        ORACLEcos: "https://objectstorage.us-ashburn-1.oraclecloud.com/n/idcgvw3idubd/b/srigmadeit-object-bucket/o/",
+        videosCOS: "https://objectstorage.us-ashburn-1.oraclecloud.com/n/idcgvw3idubd/b/srigmadeit/o/srigmadeit%2F",
         IBMcos: "https://srigmadeit-storage-cos-standard-s6x.s3.us-east.cloud-object-storage.appdomain.cloud/",
     }
 }

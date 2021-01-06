@@ -46,10 +46,10 @@ const ManageContent = (props) => {
                 </Tabs>
             </Popover>
             <TabPanel value={value} index={0}>
-                <ManageGallery cosConfig={cosConfig} />
+                <ManageGallery cosConfig={cosConfig.photos} />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <ManageStaticPhotos />
+                <ManageStaticPhotos cosConfig={cosConfig.photos} />
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <ManageVideos cosConfig={cosConfig} />

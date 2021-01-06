@@ -54,7 +54,7 @@ const EditCategory = ({ eventId, cosConfig }) => {
 async function uploadPhotos(eventId, categoryId, photosRef, cosConfig) {
     try {
         const photos = [...photosRef.current.files];
-        const media_ids = await srigmadeitAPI.createMedia(eventId, categoryId, dataSources.COS, photos.length);
+        const media_ids = await srigmadeitAPI.createMedia(eventId, categoryId, dataSources.photosCOS, photos.length);
         await cosService.uploadCOS(cosConfig, media_ids, photos, console.log);
 
     }
