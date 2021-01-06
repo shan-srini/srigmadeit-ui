@@ -10,7 +10,7 @@ const style = makeStyles((theme) => ({
     navPopoverButton: {
         position: 'fixed',
         right: theme.spacing(2),
-        bottom: theme.spacing(2),
+        bottom: theme.spacing(10),
         display: 'flex',
         flexDirection: 'column',
         padding: theme.spacing(2),

@@ -12,6 +12,7 @@ const srigmadeitAPI = {
     getMedia: getMedia,
     getVideos: getVideos,
     createMedia: createMedia,
+    deleteMedia: deleteMedia,
     login: login
 }
 export default srigmadeitAPI;
@@ -179,6 +180,12 @@ function login(username, password) {
         .catch((error) => { console.log(error); return false; })
 }
 
-
-
 // delete photo
+function deleteMedia(deleteId) {
+    const endpoint = api.getMedia + '/' + deleteId;
+    return requests.delete(endpoint, { withCredentials: true })
+        .then((response) => {
+            return response.data;
+        })
+        .catch((error) => { console.log(error); return false; })
+}

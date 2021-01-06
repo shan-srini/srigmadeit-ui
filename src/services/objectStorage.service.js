@@ -2,7 +2,8 @@ import { S3 } from 'aws-sdk'
 const Compress = require('compress.js')
 
 const COS = {
-    uploadCOS: uploadCOS
+    uploadCOS: uploadCOS,
+    deleteCOS: deleteCOS
 }
 export default COS;
 
@@ -51,21 +52,18 @@ function compress(files) {
 
 async function deleteCOS(secretConfig, objectIDs) {
     var cos = new S3(secretConfig);
-    const deleteObjects = (toDelete) => {
-        return cos.deleteObjects({
-            Bucket: 'srigmadeit-storage-cos-standard-s6x',
-            Delete: {
-                Objects: {
-                    toDelete
-                }
-            }
+    const remove = (toRemove) => {
+        return cos.deleteObject({
+            Bucket: 'srigmadeit',
+            Key: toRemove
         }).promise()
             .then(() => {
-                // console.log(`Item: deleted!`);
+                console.log(`Item: ${toRemove} deleted!`);
                 return true;
             })
             .catch((e) => console.log(e));
     }
-    let toDelete = objectIDs.map((objectID) => { return { 'Key': objectID } })
-    await deleteObjects(toDelete);
+    for (let ii = 0; ii < objectIDs.length; ii++) {
+        await remove(objectIDs[ii])
+    }
 }

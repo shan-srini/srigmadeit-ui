@@ -30,6 +30,7 @@ const CreateCategory = (props) => {
 const EditCategory = ({ eventId, cosConfig }) => {
     const [categories, setCategories] = React.useState([]);
     const [selectedCategoryId, setSelectedCategoryId] = React.useState();
+    const [deleteURL, setDeleteURL] = React.useState();
     const photosInputRef = React.useRef(null);
     useEffect(() => {
         srigmadeitAPI.getCategories(eventId).then(ret => {
@@ -47,6 +48,12 @@ const EditCategory = ({ eventId, cosConfig }) => {
             </select>
             <input required multiple id="uploadPhotos" ref={photosInputRef} type="file" accept="image/*" />
             <button onClick={() => uploadPhotos(eventId, selectedCategoryId, photosInputRef, cosConfig)}> upload photos </button>
+
+            Delete Photos:
+            <br />
+            photo link
+            <input onChange={(e) => setDeleteURL(e.target.value)} />
+            <button onClick={(e) => deletePhoto(deleteURL, cosConfig)}> delete photo </button>
         </Container>
     )
 }
@@ -60,6 +67,13 @@ async function uploadPhotos(eventId, categoryId, photosRef, cosConfig) {
     }
     catch (err) {
 
+    }
+}
+
+async function deletePhoto(deleteURL, cosConfig) {
+    const deleteId = deleteURL.substring(deleteURL.lastIndexOf('/') + 1)
+    if (srigmadeitAPI.deleteMedia(deleteId, cosConfig)) {
+        cosService.deleteCOS(cosConfig, [deleteId])
     }
 }
 
