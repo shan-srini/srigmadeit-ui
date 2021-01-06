@@ -12,11 +12,14 @@ const style = makeStyles((theme) => ({
         backgroundColor: 'white',
         color: 'black',
         padding: theme.spacing(3),
-        paddingBottom: theme.spacing(5),
+        marginBottom: theme.spacing(5),
+        height: '80vh',
+        borderRadius: '15px',
         [theme.breakpoints.down('sm')]: {
             flexDirection: 'column-reverse',
             marginTop: theme.spacing(8),
-            marginBottom: theme.spacing(5)
+            marginBottom: theme.spacing(5),
+            height: 'auto'
         }
     },
     infoContainer: {
@@ -38,6 +41,9 @@ const style = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             height: '75%',
             width: '75%',
+        },
+        [theme.breakpoints.up('lg')]: {
+            height: '75%'
         }
     }
 }))

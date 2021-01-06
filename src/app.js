@@ -4,6 +4,7 @@ import routes from './routes.js'
 import theme from './theme.js'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import NavBar from './components/navBar/NavBar.js'
+import Footer from './components/footer/Footer'
 // Pages
 import Home from './pages/home/Home'
 import Photos from './pages/photos/Photos'
@@ -35,6 +36,7 @@ function App() {
                         </Switch>
                     </Suspense>
                 </BrowserRouter>
+                <Footer />
             </ThemeProvider>
         </React.Fragment>
     )

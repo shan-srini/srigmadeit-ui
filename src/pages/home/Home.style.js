@@ -7,14 +7,13 @@ const style = makeStyles((theme) => ({
         marginTop: theme.spacing(8)
     },
     homeBackground: {
-        position: 'absolute',
+        position: 'relative',
         top: '0',
         width: '100%'
     },
     recentEventsContainer: {
         paddingBottom: theme.spacing(5),
-        position: 'absolute',
-        top: '85vh',
+        position: 'relative',
         height: 'fit-content'
     },
     scrollUpDownArrow: {
