@@ -13,6 +13,7 @@ import EventPage from './pages/events/singleEventPage/EventPage'
 import Videos from './pages/videos/Videos'
 import Contact from './pages/contact/Contact'
 const Manage = lazy(() => import('./pages/manage/Manage'));
+const NotFound = lazy(() => import('./pages/notFound/NotFound'))
 
 function App() {
     return (
@@ -31,8 +32,8 @@ function App() {
                             <Route exact path={routes.events + '/:eventId/'} component={EventPage} />
                             <Route exact path={routes.videos} component={Videos} />
                             <Route exact path={routes.contact} component={Contact} />
-                            <Route exact path={'/404'} component={() => <div>notfound</div>} />
-                            <Route component={() => <div>notfound</div>} />
+                            <Route exact path={'/404'} component={NotFound} />
+                            <Route component={NotFound} />
                         </Switch>
                     </Suspense>
                 </BrowserRouter>

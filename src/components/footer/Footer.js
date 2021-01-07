@@ -8,9 +8,9 @@ const Footer = (props) => {
     return (
         <footer className={classes.footer}>
             <div className={classes.siteNameContainer}>
-                <Typography variant="overline" style={{ fontSize: '24px' }}> <small>&copy;</small>SRIGMADEIT </Typography>
-                <a href="https://www.instagram.com/srigmadeit/?hl=en" target="_blank" className={classes.link}>
-                    <img height="25" width="25" src="https://www.flaticon.com/svg/static/icons/svg/1384/1384031.svg" />
+                <Typography variant="overline" style={{ fontSize: '24px' }}> SRIGMADEIT<small style={{ fontSize: '12px' }}>&copy;2020</small> </Typography>
+                <a href="https://www.instagram.com/srigmadeit/?hl=en" target="_blank" className={classes.link} rel="noreferrer">
+                    <img title="Srigmadeit Instagram icon" height="25" width="25" src="https://www.flaticon.com/svg/static/icons/svg/1384/1384031.svg" alt="Instagram icon" />
                 </a>
             </div>
             <div className={classes.peopleInfoContainer}>
@@ -20,8 +20,8 @@ const Footer = (props) => {
                         <br />
                         <a href="mailto:srig@srigmadeit.com" className={classes.email}> srig@srigmadeit.com </a>
                         <br />
-                        <a href="https://www.instagram.com/srig_s/?hl=en" target="_blank" className={classes.link}>
-                            <img height="25" width="25" src="https://www.flaticon.com/svg/static/icons/svg/1384/1384031.svg" className={classes.instagramIcon} />
+                        <a href="https://www.instagram.com/srig_s/?hl=en" target="_blank" className={classes.link} rel="noreferrer">
+                            <img height="25" width="25" src="https://www.flaticon.com/svg/static/icons/svg/1384/1384031.svg" className={classes.instagramIcon} alt="Instagram icon" />
                             srig_s
                         </a>
                     </Typography>
@@ -32,8 +32,8 @@ const Footer = (props) => {
                         <br />
                         <a href="mailto:shan@srigmadeit.com" className={classes.email}> shan@srigmadeit.com </a>
                         <br />
-                        <a href="https://www.instagram.com/s.h.4.n/?hl=en" target="_blank" className={classes.link}>
-                            <img height="25" width="25" src="https://www.flaticon.com/svg/static/icons/svg/1384/1384031.svg" className={classes.instagramIcon} />
+                        <a href="https://www.instagram.com/s.h.4.n/?hl=en" target="_blank" className={classes.link} rel="noreferrer">
+                            <img height="25" width="25" src="https://www.flaticon.com/svg/static/icons/svg/1384/1384031.svg" className={classes.instagramIcon} alt="Instagram icon" />
                             s.h.4.n
                         </a>
                     </Typography>

@@ -4,8 +4,8 @@
   "description": "A gallery - by Srig",
   "icons": [
     {
-      "src": "favicon.ico",
-      "type": "image/x-icon",
+      "src": "logo64.png",
+      "type": "image/png",
       "sizes": "64x64 32x32 24x24 16x16"
     },
     {
@@ -14,7 +14,7 @@
       "sizes": "192x192"
     }
   ],
-  "homepage_url": "srigmadeit.com",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#798337",

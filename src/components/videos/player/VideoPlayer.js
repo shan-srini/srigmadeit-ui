@@ -42,6 +42,7 @@ const VideoPlayer = ({ src, videoName }) => {
                     null
             }
             <video
+                title="Srigmade it video player"
                 style={{ display: loading ? 'none' : 'block', minHeight: '90%', maxHeight: '100%' }}
                 key={src}
                 height="90%"

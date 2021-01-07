@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel ./public/index.html",
     "prebuild": "rm -rf dist",
-    "build": "npm run prebuild && parcel build NODE_ENV=production --detailed-report --no-source-maps ./public/index.html"
+    "build": "npm run prebuild && parcel build NODE_ENV=production --detailed-report --no-source-maps ./public/index.html && cp ./public/robots.txt ./dist/robots.txt"
   },
   "keywords": [],
   "author": "Shanmukha Srinivasan",

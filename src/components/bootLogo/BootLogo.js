@@ -1,12 +1,13 @@
 import { Container } from '@material-ui/core'
 import React from 'react'
+// import bootLogo from '../../assets/bootLogo.mp4'
 import bootLogo from '../../assets/bootLogo.gif'
 import style from './BootLogo.style.js'
 
 const BootLogo = (props) => {
     const classes = style();
     const [display, setDisplay] = React.useState(true);
-    const displayTime = 2000;
+    const displayTime = 1500;
     setTimeout(() => {
         setDisplay(false);
     }, displayTime);
@@ -19,6 +20,9 @@ const BootLogo = (props) => {
         display ?
             <Container maxWidth={false} id="loadingLogoContainer" className={classes.loadingLogoContainer}>
                 <img alt="srigmadeit bootLogo" id="loadingLogo" className={classes.loadingLogo} src={bootLogo} />
+                {/* <video autoPlay muted loop alt="srigmadeit bootLogo" id="loadingLogo" className={classes.loadingLogo}>
+                    <source src={bootLogo} />
+                </video> */}
             </Container>
             :
             null

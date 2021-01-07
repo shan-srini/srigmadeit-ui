@@ -8,7 +8,7 @@ const style = makeStyles((theme) => ({
         left: '0',
         backgroundColor: 'black',
         animationName: '$disappearLogoContainer',
-        animationDuration: '2s',
+        animationDuration: '1.5s',
         visibility: 'visible',
         animationFillMode: 'forwards',
         height: '100%',

@@ -1,4 +1,4 @@
-const srigmadeitBaseURL = process.env.NODE_ENV === 'development' ? 'http://192.168.1.202:5000/api' : 'https://srigmadeit-api.herokuapp.com/api'
+const srigmadeitBaseURL = process.env.NODE_ENV === 'development' ? 'http://192.168.1.202:5000' : 'https://api.srigmadeit.com'
 
 const routes = {
     home: "/",
@@ -23,7 +23,6 @@ const routes = {
         GD: "https://drive.google.com/uc",
         DM: "https://www.dailymotion.com/embed/video/",
         videosCOS: "https://objectstorage.us-ashburn-1.oraclecloud.com/n/idcgvw3idubd/b/srigmadeit/o/srigmadeit%2F",
-        IBMcos: "https://srigmadeit-storage-cos-standard-s6x.s3.us-east.cloud-object-storage.appdomain.cloud/",
     }
 }
 
