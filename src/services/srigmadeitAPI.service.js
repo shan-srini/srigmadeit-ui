@@ -1,5 +1,5 @@
 import requests from '../requests.js'
-import routes from '../routes.js'
+import routes, { srigmadeitBaseURL } from '../routes.js'
 
 const api = routes.services.srigmadeit;
 
@@ -22,6 +22,17 @@ export const dataSources = {
     ORACLE: 'oracle', // Oracle COS for videos
     // GD: 'gd',
     // DM: 'dm' // dailymotion videos
+}
+
+export const checkHealthy = () => {
+    requests.get(srigmadeitBaseURL)
+        .then((res) => {
+            // console.log('healthy');
+        })
+        .catch((err) => {
+            console.error('API down');
+            window.location.href = routes.down;
+        })
 }
 
 /**

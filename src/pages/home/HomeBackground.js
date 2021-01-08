@@ -18,17 +18,13 @@ const backgroundAnimation = {
     objectFit: 'cover'
 }
 
-const profilePicStyle = {
-    height: '90%',
-}
-
 const Bg = () => {
     return (
         <div style={container}>
             <video title="background animation video" autoPlay loop muted playsInline style={backgroundAnimation} height="auto" width="100%">
                 <source src={background} />
             </video>
-            <img alt="srigmadeit profile picture" src={homeBackProfilePic} style={profilePicStyle} height="auto" width="auto" />
+            <img alt="srigmadeit profile picture" src={homeBackProfilePic} height="90%" width="auto" />
         </div>
     )
 }

@@ -19,7 +19,7 @@ const BootLogo = (props) => {
     return (
         display ?
             <Container maxWidth={false} id="loadingLogoContainer" className={classes.loadingLogoContainer}>
-                <img alt="srigmadeit bootLogo" id="loadingLogo" className={classes.loadingLogo} src={bootLogo} />
+                <img alt="srigmadeit bootLogo" id="loadingLogo" height="auto" width="auto" className={classes.loadingLogo} src={bootLogo} />
                 {/* <video autoPlay muted loop alt="srigmadeit bootLogo" id="loadingLogo" className={classes.loadingLogo}>
                     <source src={bootLogo} />
                 </video> */}

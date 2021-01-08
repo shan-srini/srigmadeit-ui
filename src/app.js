@@ -1,5 +1,5 @@
 import { ThemeProvider, CssBaseline, CircularProgress } from '@material-ui/core'
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy, useEffect } from 'react'
 import routes from './routes.js'
 import theme from './theme.js'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
@@ -12,10 +12,16 @@ import AllEvents from './pages/events/allEvents/AllEvents'
 import EventPage from './pages/events/singleEventPage/EventPage'
 import Videos from './pages/videos/Videos'
 import Contact from './pages/contact/Contact'
+import { checkHealthy } from './services/srigmadeitAPI.service.js'
 const Manage = lazy(() => import('./pages/manage/Manage'));
-const NotFound = lazy(() => import('./pages/notFound/NotFound'))
+const NotFound = lazy(() => import('./pages/notFound/NotFound'));
+const Down = lazy(() => import('./pages/down/Down'));
 
 function App() {
+    useEffect(() => {
+        if (window.location.pathname != routes.down) checkHealthy(); // checks API
+    }, []);
+
     return (
         <React.Fragment>
             <ThemeProvider theme={theme}>
@@ -32,6 +38,7 @@ function App() {
                             <Route exact path={routes.events + '/:eventId/'} component={EventPage} />
                             <Route exact path={routes.videos} component={Videos} />
                             <Route exact path={routes.contact} component={Contact} />
+                            <Route exact path={routes.down} component={Down} />
                             <Route exact path={'/404'} component={NotFound} />
                             <Route component={NotFound} />
                         </Switch>

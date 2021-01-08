@@ -1,4 +1,4 @@
-const srigmadeitBaseURL = process.env.NODE_ENV === 'development' ? 'http://192.168.1.202:5000' : 'https://api.srigmadeit.com'
+export const srigmadeitBaseURL = process.env.NODE_ENV === 'development' ? 'http://192.168.1.202:5000' : 'https://api.srigmadeit.com'
 
 const routes = {
     home: "/",
@@ -8,6 +8,7 @@ const routes = {
     contact: '/contact',
     upload: '/upload',
     notFound: '/404',
+    down: '/down',
     services: {
         srigmadeit: {
             events: srigmadeitBaseURL + '/events',

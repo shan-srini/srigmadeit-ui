@@ -1,6 +1,6 @@
 import React from 'react'
 import { AppBar, Toolbar, Typography, Backdrop, Container, Tooltip } from '@material-ui/core'
-import SmiLogo from '../../assets/SmiLogo.png'
+import SmiLogo from '../../../public/logo192.png'
 import style from './NavBar.style.js'
 import { Link, useHistory } from 'react-router-dom'
 import routes from '../../routes.js'
