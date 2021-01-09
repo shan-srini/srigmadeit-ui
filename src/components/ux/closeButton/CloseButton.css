@@ -3,18 +3,22 @@
     height: 5px;
     background-color: #FFFFFF;
     margin: 6px 0;
-    transition: 0.4s;
     cursor: pointer;
+    transition: .4s;
+    opacity: 1;
 }
 
 .bar1Transition {
+    transition: 0.4s;
     transform: rotate(-45deg) translateY(15px);
 }
 
 .bar2Transition {
+    transform: translateX(10px);
     opacity: 0;
 }
 
 .bar3Transition {
+    transition: 0.4s;
     transform: rotate(-135deg) translateY(15px);
 }

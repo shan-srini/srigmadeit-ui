@@ -48,7 +48,7 @@ const VideoPlayer = ({ src, videoName }) => {
                 height="90%"
                 controls playsInline autoPlay muted loop
                 onLoadedData={() => setLoading(false)}
-                onError={() => setErrorExists(true)}
+                onError={() => { if (src) setErrorExists(true) }}
             >
                 <source src={src} type='video/mp4' />
                 HTML5 video is not supported on your browser.

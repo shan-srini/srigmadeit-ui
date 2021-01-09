@@ -33,8 +33,10 @@ const style = makeStyles((theme) => ({
     },
     profilePicContainer: {
         display: "block",
-        height: '50%',
-        width: '40%',
+        maxHeight: '80%',
+        maxWidth: '500px',
+        height: 'auto',
+        width: 'auto',
         objectFit: "cover",
         objectPosition: "center",
         borderRadius: '15px',

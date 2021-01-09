@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Grid, TextField, Typography } from '@material-ui/core'
+import { Container, Grid, TextField, Typography, CircularProgress } from '@material-ui/core'
 import srigmadeitAPI from '../../../services/srigmadeitAPI.service'
 import style from './EventGrid.style.js'
 import EventCard from '../card/EventCard.js'
@@ -63,6 +63,12 @@ const EventGrid = ({ pageable, pageHeadingText }) => {
                     pageable && <Pagination color="secondary" count={totalPages} page={page} onChange={(e, nv) => setPage(nv)} />
                 }
             </div>
+            {
+                events && events.length === 0 ?
+                    <span style={{ display: 'flex', padding: '10px', justifyContent: 'center', height: 'fit-content', width: '100%' }}> <CircularProgress color="secondary" /> </span>
+                    :
+                    null
+            }
             <Grid className={classes.eventCardsGridContainer} container spacing={3}>
                 {events.map(item =>
                     <Grid item xs={12} md={6} key={item._id} className={classes.eventCardGridContainer}>
