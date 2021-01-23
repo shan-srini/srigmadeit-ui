@@ -16,7 +16,7 @@ async function uploadCOS(secretConfig, objectIDs, objects, setLoadingStatusText 
             ACL: 'public-read',
             Key: media_id,
             Body: file,
-            CacheControl: "public, max-age=15552000"
+            CacheControl: "public, max-age=604800"
         }).promise()
             .then(() => {
                 // console.log(`Item: created!`);

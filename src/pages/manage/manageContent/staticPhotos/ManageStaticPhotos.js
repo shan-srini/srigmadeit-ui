@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Container } from '@material-ui/core'
 import cloudStorageAPI from '../../../../services/objectStorage.service.js'
-import CloudStorageContext from '../../CloudStorageContext.js'
 import photosStaticPageStyle from "../../../photos/Photos.style.js"
 
 // photosPageStaticImage1
@@ -30,7 +29,7 @@ const ManageStaticPhotos = ({ cosConfig }) => {
 async function setStaticImage(e, cloudStorageConfig, index, pictureRef) {
     e.preventDefault();
     const picture = pictureRef.current.files[0];
-    const idToSet = "photosPageStaticImage" + index
+    const idToSet = "staticPhotosPageImage" + index
     try {
         await cloudStorageAPI.uploadCOS(cloudStorageConfig, [idToSet], [picture]);
         window.alert("uploaded")

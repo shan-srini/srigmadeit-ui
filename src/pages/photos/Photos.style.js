@@ -50,7 +50,10 @@ const style = makeStyles((theme) => ({
         height: '27vh',
         width: '90%',
         marginTop: theme.spacing(photoTopMargin),
-        borderRadius: '25px'
+        borderRadius: '25px',
+        [theme.breakpoints.down('xs')]: {
+            height: '35vh',
+        }
     },
     // Wide middle column
     photosPageWideColumn: {

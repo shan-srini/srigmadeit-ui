@@ -11,7 +11,9 @@ const Upload = () => {
             <Login setCosConfig={(value) => setCosConfig(value)} setLoggedIn={(value) => setLoggedIn(value)} />
             :
             <CloudStorageContext.Provider value={cosConfig}>
-                <ManageContent />
+                <div style={{ position: 'relative', minHeight: '100vh' }}>
+                    <ManageContent />
+                </div>
             </CloudStorageContext.Provider>
     )
 }
