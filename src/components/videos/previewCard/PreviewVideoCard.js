@@ -12,7 +12,10 @@ const PreviewVideoCard = ({ videoMeta }) => {
                 src={mediaMetaToURL({ '_id': videoMeta._id, 'source': dataSources.COS })}
                 className={classes.previewCardPicture}
             />
-            <span> {videoMeta.category} </span>
+            <span> {videoMeta.name} </span>
+            {   videoMeta.date &&
+                <div className={classes.videoDateText}> {videoMeta.date} </div>
+            }
         </div>
     )
 }

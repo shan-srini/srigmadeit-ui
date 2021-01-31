@@ -11,6 +11,7 @@ import objectStorageService from '../../../../services/objectStorage.service'
  */
 const ManageVideos = ({ cosConfig }) => {
     const [videoName, setVideoName] = useState('');
+    const [videoDate, setVideoDate] = useState();
     let thumbnailRef = useRef(null);
     let videoRef = useRef(null);
 
@@ -18,9 +19,11 @@ const ManageVideos = ({ cosConfig }) => {
         <div>
             Manage Videos
             <br />
-            <form onSubmit={(e) => { uploadVideo(e, videoName, thumbnailRef, videoRef, cosConfig) }}>
+            <form onSubmit={(e) => { uploadVideo(e, videoName, videoDate, thumbnailRef, videoRef, cosConfig) }}>
                 <label>Video name:</label>
                 <input type="text" title="video name" required value={videoName} onChange={(e) => setVideoName(e.target.value)} />
+                <label>Optional video date:</label>
+                <input type="text" title="video date" value={videoDate} onChange={(e) => setVideoDate(e.target.value)} />
                 <br />
                 <label>Video thumbnail:</label>
                 <input type="file" accept="image/*" required ref={thumbnailRef} />
@@ -33,10 +36,16 @@ const ManageVideos = ({ cosConfig }) => {
     )
 }
 
-async function uploadVideo(e, videoName, videoThumbnailRef, videoFileRef, cosConfig) {
+async function uploadVideo(e, videoName, videoDate, videoThumbnailRef, videoFileRef, cosConfig) {
     e.preventDefault()
     let videoThumbnail = videoThumbnailRef.current.files[0];
     let videoFile = videoFileRef.current.files[0];
+    if (videoDate) {
+        // ;;; will be delimeter for info. Right now only date supported
+        // if more needed in future, either new table will be created with
+        // better support instead of reusing, or more complicated string pattern
+        videoName = encodeURIComponent(videoName + ";;;" + videoDate);
+    }
 
     let res = await srigmadeitAPI.createMedia('SRIGMADEIT_VIDEOS', videoName, dataSources.ORACLE, 1);
     if (res.length > 0) {

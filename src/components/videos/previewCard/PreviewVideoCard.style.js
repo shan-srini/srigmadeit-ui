@@ -13,6 +13,10 @@ const style = makeStyles((theme) => ({
         height: '240px',
         width: '240px',
         marginBottom: theme.spacing(1)
+    },
+    videoDateText: {
+        fontSize: '12px',
+        color: 'white'
     }
 }))
 

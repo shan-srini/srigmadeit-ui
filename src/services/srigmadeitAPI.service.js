@@ -147,6 +147,12 @@ function getVideos(page = 0, size = 25) {
     endpoint.searchParams.append('size', size);
     return requests.get(endpoint)
         .then((response) => {
+            const modMeta = response.data.media_ids;
+            for (let ii = 0; ii < modMeta.length; ii++) {
+                 const videoNameAttrs = decodeURIComponent(modMeta[ii].category).split(";;;");
+                 modMeta[ii].name = videoNameAttrs[0];
+                 modMeta[ii].date = videoNameAttrs[1];
+            }
             return response.data;
         })
 }

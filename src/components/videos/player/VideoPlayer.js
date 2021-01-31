@@ -20,7 +20,12 @@ const titleText = {
     textAlign: 'center'
 }
 
-const VideoPlayer = ({ src, videoName }) => {
+const dateText = {
+    fontSize: '14px',
+    textAlign: 'center'
+}
+
+const VideoPlayer = ({ src, videoName, videoDate }) => {
     const [loading, setLoading] = useState(true);
     const [errorExists, setErrorExists] = useState(false);
     useEffect(() => {
@@ -55,6 +60,9 @@ const VideoPlayer = ({ src, videoName }) => {
             </video>
             <Typography variant="overline" style={titleText}>
                 {videoName}
+            </Typography>
+            <Typography variant="overline" style={dateText}>
+                {videoDate}
             </Typography>
         </div >
 

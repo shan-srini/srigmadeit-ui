@@ -18,7 +18,8 @@ const VideoPage = (props) => {
         <div className={classes.videoPageContainer}>
             <VideoPlayer
                 src={mediaMetaToURL(selectedVideoMeta)}
-                videoName={selectedVideoMeta.category}
+                videoName={selectedVideoMeta.name}
+                videoDate={selectedVideoMeta.date}
             />
             <PreviewVideosGrid
                 videos={videos}
