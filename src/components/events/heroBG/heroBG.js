@@ -7,7 +7,7 @@ const HeroBG = ({ backgroundSrc, eventName, timestamp }) => {
     backgroundSrc = new URL(backgroundSrc); // to url encode
     return (
         <Container className={classes.heroImageContainer}>
-            <Container className={classes.heroImage} style={{ backgroundImage: `url(${backgroundSrc})` }}>
+            <Container className={classes.heroImage} style={{ backgroundImage: `url("${backgroundSrc}")` }}>
                 <Paper elevation={10} className={classes.eventMetaBar}>
                     <Typography variant="h3">{eventName}</Typography>
                     <Typography variant="h5">{timestamp}</Typography>
