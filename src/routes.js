@@ -1,4 +1,4 @@
-export const srigmadeitBaseURL = process.env.NODE_ENV === 'development' ? 'http://192.168.1.202:5000' : 'https://api.srigmadeit.com'
+export const srigmadeitBaseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://api.srigmadeit.com'
 
 const routes = {
     home: "/",

@@ -48,7 +48,7 @@ const VideoPlayer = ({ src, videoName, videoDate }) => {
             }
             <video
                 title="Srigmade it video player"
-                style={{ display: loading ? 'none' : 'block', minHeight: '90%', maxHeight: '100%' }}
+                style={{ display: loading ? 'none' : 'block', minHeight: '90%', maxHeight: '100%', maxWidth: '100%' }}
                 key={src}
                 height="90%"
                 controls playsInline autoPlay muted loop

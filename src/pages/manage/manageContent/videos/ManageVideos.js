@@ -44,10 +44,10 @@ async function uploadVideo(e, videoName, videoDate, videoThumbnailRef, videoFile
         // ;;; will be delimeter for info. Right now only date supported
         // if more needed in future, either new table will be created with
         // better support instead of reusing, or more complicated string pattern
-        videoName = encodeURIComponent(videoName + ";;;" + videoDate);
+        //videoName = encodeURIComponent(videoName + ";;;" + videoDate);
     }
 
-    let res = await srigmadeitAPI.createMedia('SRIGMADEIT_VIDEOS', videoName, dataSources.ORACLE, 1);
+    let res = await srigmadeitAPI.createMedia('SRIGMADEIT_VIDEOS', videoName, dataSources.ORACLE, 1, videoDate);
     if (res.length > 0) {
         const videoId = res[0];
         try {

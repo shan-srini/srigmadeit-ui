@@ -112,12 +112,13 @@ function getCategories(eventId) {
  * @param {String} 
  * @param {int} count 
  */
-function createMedia(eventId, categoryId, source = dataSources.photosCOS, count = 1) {
+function createMedia(eventId, categoryId, source = dataSources.photosCOS, count = 1, date = false) {
     const endpoint = api.media(eventId, categoryId);
     const postBody = {
         source: source,
         count: count
     }
+    if (date) postBody.date = date
     return requests.post(endpoint, postBody,
         { withCredentials: true })
         .then((response) => {
