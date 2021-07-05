@@ -60,7 +60,7 @@ const EventGrid = ({ pageable, pageHeadingText }) => {
             </Container>
             <div className={classes.pageSelectorDivider}>
                 {
-                    pageable && <Pagination color="secondary" count={totalPages} page={page} onChange={(e, nv) => setPage(nv)} />
+                    pageable && <Pagination color="secondary" defaultPage={1} count={totalPages} siblingCount={0} page={page} onChange={(e, nv) => setPage(nv)} />
                 }
             </div>
             {
