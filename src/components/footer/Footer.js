@@ -20,7 +20,7 @@ const Footer = (props) => {
                         <br />
                         <a href="mailto:srig@srigmadeit.com" className={classes.email}> srig@srigmadeit.com </a>
                         <br />
-                        <a href="https://www.instagram.com/srig_s/?hl=en" target="_blank" className={classes.link} rel="noreferrer">
+                        <a href="https://www.instagram.com/7srig/?hl=en" target="_blank" className={classes.link} rel="noreferrer">
                             <img height="25" width="25" src="https://cdn-icons-png.flaticon.com/512/2111/2111491.png" className={classes.instagramIcon} alt="Instagram icon" />
                             srig_s
                         </a>

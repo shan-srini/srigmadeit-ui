@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# deploy script for srigmadeit frontend
+# this deploys directly to PROD!
+# author: shansrini
+
+echo "*** Deploy script srigmadeit to PROD ***"
+
+echo "make sure you set cloudflare and aws credentials!"
+
+if [ -z "$CLOUDFLARE_SRIGMADEIT_API_KEY" ]
+then
+    echo "Cloudflare credentials not set.";
+    exit 1;
+fi
+
+nvm use 12
+npm run build
+
+aws s3 sync dist s3://srigmadeit-storage-cos-standard-s6x/ --acl "public-read" --endpoint-url https://s3.us-east.cloud-object-storage.appdomain.cloud --profile srigmadeit_ui || exit 1
+
+echo "Clearing cloudflare cache"
+curl -X DELETE "https://api.cloudflare.com/client/v4/zones/e76adc96c3a5051df4a873c9af8892f9/purge_cache" \
+     -H "X-Auth-Email: srigmadeit.dev@gmail.com" \
+     -H "X-Auth-Key: ${CLOUDFLARE_SRIGMADEIT_API_KEY}" \
+     -H "Content-Type: application/json" \
+     --data '{"purge_everything":true}'

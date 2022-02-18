@@ -25,7 +25,7 @@ const Contact = () => {
                     <br />
                     <Typography variant="h6"> Other info </Typography>
                     <Typography>
-                        Sophmore in High School
+                        Junior in High School
                     <br />
                     Located in Eastern Massachusetts
                     <br />
